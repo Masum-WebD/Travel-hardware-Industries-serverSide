@@ -20,6 +20,7 @@ async function run() {
         await client.connect();
         const ProductCollection =client.db('travel_hardware').collection('product')
         const ReviewCollection =client.db('travel_hardware').collection('Review')
+        const OrdersCollection =client.db('travel_hardware').collection('orders')
         app.get('/product', async(req, res)=>{
             const query ={};
             const cursor = ProductCollection.find(query);
@@ -40,6 +41,14 @@ async function run() {
             const review= await cursor.toArray()
             res.send(review);
         })
+
+        //Orders
+        app.post('/orders',async (req,res)=>{
+            const order =req.body;
+            const result = await OrdersCollection.insertOne(order);
+            res.send(result);
+        })
+
     }
     finally{
 

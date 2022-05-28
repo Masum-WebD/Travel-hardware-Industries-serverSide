@@ -22,7 +22,7 @@ async function run() {
         const ReviewCollection =client.db('travel_hardware').collection('Review')
         const OrdersCollection =client.db('travel_hardware').collection('orders')
         const userCollection =client.db('travel_hardware').collection('user')
-        
+        //admin /users
           app.get("/admin/:email", async (req, res) => {
             const email = req.params.email;
             const user = await userCollection.findOne({ email: email });

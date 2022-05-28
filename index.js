@@ -47,6 +47,12 @@ async function run() {
             const order =req.body;
             const result = await OrdersCollection.insertOne(order);
             res.send(result);
+        });
+        app.get('/orders',async (req,res)=>{
+            const orderUser =req.body.orderPurchase;
+            const query ={orderPurchase: orderUser};
+            const orders = await OrdersCollection.find(query).toArray();
+            res.send(orders);
         })
 
     }
